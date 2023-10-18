@@ -1,0 +1,17 @@
+db.getCollectionNames()
+db.listCollectionNames()
+use sudoku
+show dbs
+db show
+dbs show
+use admin
+show dbs
+db.getCollectionNames()
+use sudoku
+show dbs
+use admin
+db.createCollection('puzzles')
+db.createCollection('games')
+use sudoku
+use admin
+db.auth("pass", "user")
