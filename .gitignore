@@ -1,2 +1,5 @@
 *.venv
 **data/**
+**/.vscode
+**/.vscode/**
+**/deployments/data
