@@ -7,4 +7,13 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Generator\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Generator\" />
+  </ItemGroup>
 </Project>

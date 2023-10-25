@@ -1,19 +1,17 @@
 ﻿
-namespace SudokuGenerator; // Note: actual namespace depends on the project name.
+namespace SudokuGenerator;
 using System;
 
 
 internal class Program
     {
-        static void Main(string[] args)
+        async static Task Main(string[] args)
         {
 
-        Generator generator = new Generator("easy");
+        Generator generator = new Generator(0);
 
         Console.WriteLine("Starting Generation");
-        generator.generateOne();
-
-        generator.board.PrettyPrint();
+        await generator.generateOne();
 
         Console.WriteLine("Ending Generation");
     }

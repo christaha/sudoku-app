@@ -10,9 +10,10 @@ namespace SudokuApi.Services
     {
 
         private readonly IMongoCollection<Puzzle> _puzzlesCollection;
+        private readonly ILogger<PuzzleService> _logger;
 
         public PuzzleService(
-            IOptions<SudokuDatabaseSettings> sudokuDatabaseSettings)
+            IOptions<SudokuDatabaseSettings> sudokuDatabaseSettings, ILogger<PuzzleService> logger)
         {
             var mongoClient = new MongoClient(
                 sudokuDatabaseSettings.Value.ConnectionString);
@@ -22,6 +23,8 @@ namespace SudokuApi.Services
 
             _puzzlesCollection = mongoDatabase.GetCollection<Puzzle>(
                 sudokuDatabaseSettings.Value.PuzzlesCollectionName);
+
+            _logger = logger;
         }
 
 
@@ -50,6 +53,7 @@ namespace SudokuApi.Services
             await _puzzlesCollection.Find(x => x.Id == id).FirstOrDefaultAsync();
 
         public async Task<Puzzle> CreateAsync(PuzzleDto newPuzzle) {
+            _logger.LogInformation("Adding new Puzzle");
             Puzzle puzzle = new Puzzle() { Level = newPuzzle.Level, Board = newPuzzle.Board };
             await _puzzlesCollection.InsertOneAsync(puzzle);
             return puzzle;

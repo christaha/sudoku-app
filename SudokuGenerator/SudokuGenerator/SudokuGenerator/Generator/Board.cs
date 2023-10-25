@@ -1,23 +1,26 @@
 ﻿using System;
+using Newtonsoft.Json;
+
 namespace SudokuGenerator
 {
 	public class Board
     {
-        public char[,] Values;
+        [JsonProperty("values")]
+        public char[,] values;
 
-        public Board(char[,] values)
+        public Board(char[,] _values)
 		{
-			this.Values = values;
+			this.values = _values;
 		}
 
         public Board() {
-            this.Values = new char[9, 9];
+            this.values = new char[9, 9];
 
             for (int i = 0; i < 9; i++)
             {
                 for (int j = 0; j < 9; j++)
                 {
-                    this.Values[i,j] = '.';
+                    this.values[i,j] = '.';
                 }
             }
         }
@@ -28,7 +31,7 @@ namespace SudokuGenerator
             for (int i = 0; i < 9; i++) {
                 Console.Write("|");
                 for (int j = 0; j < 9; j++) {
-                    Console.Write(this.Values[i,j].ToString());
+                    Console.Write(this.values[i,j].ToString());
                 }
                 Console.WriteLine("|");
             }
@@ -43,7 +46,7 @@ namespace SudokuGenerator
             {
                 for (int j = 0; j < 9; j++)
                 {
-                    copy[i, j] = this.Values[i, j];
+                    copy[i, j] = this.values[i, j];
                 }
             }
 
